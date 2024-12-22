@@ -5,5 +5,6 @@ module.exports = {
 	rules: {
 		"prettier/prettier": ["error", { useTabs: true }],
 		"react-native/no-unused-styles": "error",
+		"react-native/no-inline-styles": "error",
 	},
 };
