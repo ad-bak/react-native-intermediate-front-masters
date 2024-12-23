@@ -1,11 +1,12 @@
-import { Entypo, Feather } from "@expo/vector-icons";
-import { Redirect, Tabs } from "expo-router";
+import { AntDesign, Entypo, Feather } from "@expo/vector-icons";
+import { Link, Redirect, Tabs } from "expo-router";
 import { theme } from "@/theme";
 import { useUserStore } from "@/store/userStore";
+import { Pressable, StyleSheet } from "react-native";
 
 export default function Layout() {
 	const hasFinishedOnboarding = useUserStore(
-		(state) => state.hasFinishedOnboarding
+		(state) => state.hasFinishedOnboarding,
 	);
 
 	if (!hasFinishedOnboarding) {
@@ -21,6 +22,17 @@ export default function Layout() {
 					tabBarIcon: ({ color, size }) => (
 						<Entypo name="leaf" size={size} color={color} />
 					),
+					headerRight: () => (
+						<Link href="/new" asChild>
+							<Pressable style={styles.plusButton} hitSlop={10}>
+								<AntDesign
+									name="pluscircleo"
+									size={24}
+									color={theme.colors.green}
+								/>
+							</Pressable>
+						</Link>
+					),
 				}}
 			/>
 			<Tabs.Screen
@@ -35,3 +47,9 @@ export default function Layout() {
 		</Tabs>
 	);
 }
+
+const styles = StyleSheet.create({
+	plusButton: {
+		marginRight: 12,
+	},
+});
