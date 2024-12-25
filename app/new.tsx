@@ -41,7 +41,7 @@ export default function NewScreen() {
 			);
 		}
 
-		addPlant(name, Number(days));
+		addPlant(name, Number(days), imageUri);
 		router.navigate("/");
 	};
 
@@ -119,5 +119,6 @@ const styles = StyleSheet.create({
 	},
 	centered: {
 		alignItems: "center",
+		marginBottom: 24,
 	},
 });
