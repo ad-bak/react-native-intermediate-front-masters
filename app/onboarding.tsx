@@ -6,10 +6,18 @@ import { PlantlyButton } from "@/components/PlantlyButton";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { PlantlyImage } from "@/components/PlantlyImage";
+import { useFonts } from "expo-font";
 
 export default function OnboardingScreen() {
 	const router = useRouter();
 	const toggleHadOnboarded = useUserStore((state) => state.toggleHadOnboarded);
+	const [fontsLoaded] = useFonts({
+		Caveat_400Regular: require("@expo-google-fonts/caveat/Caveat_400Regular.ttf"),
+	});
+
+	if (!fontsLoaded) {
+		return null;
+	}
 
 	const handleFinishOnboarding = () => {
 		toggleHadOnboarded();
@@ -56,8 +64,9 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 	},
 	tagline: {
-		fontSize: 24,
+		fontSize: 34,
 		color: theme.colors.white,
 		textAlign: "center",
+		fontFamily: "Caveat_400Regular",
 	},
 });
